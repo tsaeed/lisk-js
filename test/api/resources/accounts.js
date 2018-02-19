@@ -54,7 +54,13 @@ describe('AccountsResource', () => {
 		});
 
 		it('should have methods', () => {
-			return resource.should.have.keys('liskAPI', 'path', 'get');
+			return resource.should.have.keys(
+				'liskAPI',
+				'path',
+				'get',
+				'getMultisignatureGroup',
+				'getMultisignatureMembership',
+			);
 		});
 	});
 });

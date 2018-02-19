@@ -14,11 +14,11 @@
  */
 
 import APIResource from 'api/apiResource';
-import TransactionResource from 'api/resources/transactions';
+import NodeResource from 'api/resources/nodes';
 
-describe('TransactionsResource', () => {
+describe('NodesResource', () => {
 	const defaultBasePath = 'http://localhost:1234';
-	const path = '/transactions';
+	const path = '/nodes';
 
 	let LiskAPI;
 	let resource;
@@ -31,12 +31,12 @@ describe('TransactionsResource', () => {
 			randomizeNodes: () => {},
 			banActiveNodeAndSelect: () => {},
 		};
-		resource = new TransactionResource(LiskAPI);
+		resource = new NodeResource(LiskAPI);
 	});
 
 	describe('#constructor', () => {
 		it('should throw error without LiskAPI input', () => {
-			return (() => new TransactionResource()).should.throw(
+			return (() => new NodeResource()).should.throw(
 				'Require LiskAPI instance to be initialized.',
 			);
 		});
@@ -45,8 +45,10 @@ describe('TransactionsResource', () => {
 			return resource.should.be.instanceOf(APIResource);
 		});
 
-		it('should have correct full path', () => {
-			return resource.resourcePath.should.eql(`${defaultBasePath}/api${path}`);
+		it('should have correcrt full path', () => {
+			return resource.resourcePath.should.eql(
+				`${defaultBasePath}/api${path}`,
+			);
 		});
 
 		it('should set resource path', () => {
@@ -54,7 +56,15 @@ describe('TransactionsResource', () => {
 		});
 
 		it('should have methods', () => {
-			return resource.should.have.keys('liskAPI', 'path', 'get', 'create');
+			return resource.should.have.keys(
+				'liskAPI',
+				'path',
+				'getConstants',
+				'getStatus',
+				'getTransactions',
+				'getForgingStatus',
+				'updateForgingStatus',
+			);
 		});
 	});
 });

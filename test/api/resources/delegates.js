@@ -54,7 +54,14 @@ describe('DelegatesResource', () => {
 		});
 
 		it('should have methods', () => {
-			return resource.should.have.keys('liskAPI', 'path', 'get', 'getStandby');
+			return resource.should.have.keys(
+				'liskAPI',
+				'path',
+				'get',
+				'getStandby',
+				'getForgers',
+				'getForgingStatus',
+			);
 		});
 	});
 });
